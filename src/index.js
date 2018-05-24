@@ -15,7 +15,20 @@ export default  (store = {}) => {
         build () {
             return (model = '', count = 1) => {
                 return {
-                    make (properties = {}) {
+                    make (...args) {
+                        if (typeof args[0] === 'function') {
+                            let callback = args[0]
+                            let models = []
+
+                            for (let i = 0; i < count; i++) {
+                                let newModel = FactoryModels[model]
+                                newModel = callback(newModel)
+                                models.push(newModel)
+                            }
+
+                            return returnModels(models)
+                        }
+                        let properties = args[0]
                         let models = []
 
                         for (let i = 0; i < count; i++) {
@@ -39,6 +52,7 @@ export default  (store = {}) => {
 
                             return returnModels(models)
                         }
+
                         let properties = args[0] ? args[0] : {}
                         let models = []
 
