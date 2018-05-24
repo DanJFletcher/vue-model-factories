@@ -39,7 +39,7 @@ Object.defineProperty(Vue.prototype, 'factory', {
 
 ```
 
-In an Vue component
+In any Vue component
 ```js
 let user = this.factory('User').make() // {name: "Miles", email: "example@email.com", role: 1}
 ```
