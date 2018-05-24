@@ -2,7 +2,7 @@
   "name": "vue-model-factories",
   "version": "0.0.1",
   "description": "Laravel inspired model factories for Vue (or any front-end application)",
-  "main": "lib/index.js",
+  "main": "lib/vue-model-factories.js",
   "jsnext:main": "src/index.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build && npm run test",
