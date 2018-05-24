@@ -1,6 +1,6 @@
 {
   "name": "vue-model-factories",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Laravel inspired model factories for Vue (or any front-end application)",
   "main": "lib/vue-model-factories.js",
   "jsnext:main": "src/index.js",
