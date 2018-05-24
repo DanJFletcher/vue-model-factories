@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const path = require('path');
 const env = require('yargs').argv.env; // use --env with webpack 2
 const pkg = require('./package.json');
-const ObjectRestSpreadPlugin = require('@sucrase/webpack-object-rest-spread-plugin');
 
 let libraryName = pkg.name;
 

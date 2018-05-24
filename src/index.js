@@ -34,7 +34,7 @@ export default  (store = {}) => {
                                 let newModel = FactoryModels[model]
                                 newModel = callback(newModel)
                                 models.push(newModel)
-                                // _store.commit(`add${model}`, model)
+                                _store.commit(`add${model}`, model)
                             }
 
                             return returnModels(models)
