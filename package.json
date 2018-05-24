@@ -1,0 +1,46 @@
+{
+  "name": "vue-model-factories",
+  "version": "0.0.1",
+  "description": "Laravel inspired model factories for Vue (or any front-end application)",
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
+  "scripts": {
+    "build": "webpack --env dev && webpack --env build && npm run test",
+    "dev": "webpack --progress --colors --watch --env dev",
+    "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
+    "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danjfletcher/vue-model-factories.git"
+  },
+  "keywords": [
+    "vue",
+    "es6",
+    "laravel",
+    "factory",
+    "model"
+  ],
+  "author": "Dan Fletcher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danjfletcher/vue-model-factories/issues"
+  },
+  "homepage": "https://github.com/danjfletcher/vue-model-factories",
+  "devDependencies": {
+    "@sucrase/webpack-object-rest-spread-plugin": "^1.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-loader": "^1.9.0",
+    "mocha": "^4.0.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4",
+    "yargs": "^10.0.3"
+  }
+}
