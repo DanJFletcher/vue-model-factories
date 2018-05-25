@@ -86,3 +86,38 @@ test('Can not call private methods', () => {
   const factory = new Factory().build()
   expect(factory.buildModelWithCallback).toBe(undefined)
 })
+
+test('Support data object for model factory', () => {
+  const FactoryModel = {
+    User: {
+      data: { name: "Jim" }
+    }
+  }
+  const user = new Factory().define(FactoryModel).build()('User').make()
+
+  expect(user.name).toBe('Jim')
+})
+
+test('Customize store mutation name', () => {
+  const FactoryModels = {
+    User: {
+      data: { name: "Jim" },
+      mutation: "pushUser"
+    }
+  }
+  const store = {
+    state: {
+      users: []
+    },
+    mutations: {
+      pushUser: (state, user) => state.users.push(user)
+    },
+    commit (mutation, data = {}) {
+      this.mutations[mutation](this.state, data)
+    }
+  }
+  const user = Factory(store).define(FactoryModels).build()('User').create()
+
+  expect(user).not.toBe(undefined)
+  expect(store.state.users.length).toBe(1)
+})

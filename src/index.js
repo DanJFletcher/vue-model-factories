@@ -14,14 +14,27 @@ export default  (store = {}) => {
         },
         build () {
             return (model = '', count = 1) => {
+                let _model = getModel(FactoryModels[model])
+                let _mutation = FactoryModels[model].mutation
+                    ? FactoryModels[model].mutation
+                    : `add${model}`
+
+                function getModel(object) {
+                    return object.data ? object.data : object
+                }
+
+                function save(object) {
+                    _store.commit(_mutation, object)
+                }
+
                 function buildModelWithCallback(callback, commit = false) {
                     let models = []
 
                     for (let i = 0; i < count; i++) {
-                        let newModel = FactoryModels[model]
+                        let newModel = _model
                         newModel = callback(newModel)
                         models.push(newModel)
-                        commit ? _store.commit(`add${model}`, model) :''
+                        commit ? save(newModel) : ''
                     }
 
                     return returnModels(models)
@@ -36,7 +49,7 @@ export default  (store = {}) => {
                         let models = []
 
                         for (let i = 0; i < count; i++) {
-                            models.push({...FactoryModels[model], ...properties})
+                            models.push({...getModel(_model), ...properties})
                         }
 
                         return returnModels(models)
@@ -51,9 +64,9 @@ export default  (store = {}) => {
                         let models = []
 
                         for (let i = 0; i < count; i++) {
-                            let model = this.make(1, properties)
+                            let model = this.make()
                             models.push(model)
-                            _store.commit(`add${model}`, model)
+                            save(model)
                         }
 
                         return returnModels(models)
