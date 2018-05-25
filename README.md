@@ -75,13 +75,15 @@ Output:
   }]
 ```
 
+## Advanced usage
+
 ### Passing overrides
 
 Of course you likely don't want to create multiples of the same model. You can either use a library like `faker` directly in your `FactoryModel` or optionally, you can always override the defaults. Or a combination of both.
 
 There are two options for overriding, either through an object, or you can pass a callback.
 
-#### Passing an object
+### Passing an object
 ```js
 let users = this.factory('User', 2).make(
   {
@@ -93,7 +95,7 @@ let users = this.factory('User', 2).make(
 
 This will give you a random fake email and name, which overrides the `FactoryModel` defaults. This is nice when you're makeing a single model, but when you want a collection of models, each model will get the same values.
 
-#### Passing a callback
+### Passing a callback
 
 To solve this you can either chain `.forEach` off of the `make()` or `create()` methods, or you can pass a callback like this:
 
@@ -105,3 +107,38 @@ let users = this.factory('User', 2).make(user => {
     }
   })
 ```
+### Relationships
+
+Relationships can be created between models by using the `create()` method and callbacks. For example you may want a owner to pet relationship:
+
+```js
+const user = this.factory('User').create(user => {
+  return {
+    ...user,
+    id: 1, // this could be auto-incremented or generated at the Model Factory
+    pet: this.factory('Cat').create({id: 1}).id
+  }
+})
+```
+Of course this example could be normalized. The user doesn't really need a reference to the pet, but it's shown here for demonstration.
+
+Here's a much more complicated example that combines object overrides with callbacks and chaining `forEach()` just to demonstrate the flexibility of this factory:
+```js
+factory('Person', 50).create(person => {
+  factory('Sensor').create({
+    asset: person.id
+  })
+  return {
+    ...person,
+    tools: [...(factory('Tool', _.random(1, 3)).create({
+      person: person.id
+    }).forEach(tool => factory('Sensor').create({
+      fields: {
+        asset: tool.id
+      }
+    })))].map(tool => tool.id)
+  }
+})
+```
+
+Admittedly that is not the prettiest code to read. But of course you can abstract all the complexity however you wish.
