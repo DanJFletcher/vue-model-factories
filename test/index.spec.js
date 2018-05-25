@@ -72,3 +72,17 @@ test('Callback function gets called {modelCount} times with make method', () => 
 
   expect(mockCallback.mock.calls.length).toBe(2)
 })
+
+test('Store gets commit method invoked with callback', () => {
+  const store = {
+    commit: jest.fn()
+  }
+  new Factory(store).build()('User', 2).create(() => {})
+
+  expect(store.commit.mock.calls.length).toBe(2)
+})
+
+test('Can not call private methods', () => {
+  const factory = new Factory().build()
+  expect(factory.buildModelWithCallback).toBe(undefined)
+})
