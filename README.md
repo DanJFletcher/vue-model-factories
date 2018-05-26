@@ -45,8 +45,23 @@ let user = this.factory('User').make() // {name: "Miles", email: "example@email.
 ```
 
 You can also use `create()` which will commit the object to the store.
-You will need to have a mutation set up with the naming convention of `add${model}` for this feature to work.
-(In future releases there will be support for configuring this)
+By default, you will need to have a mutation set up with the naming convention of `add${model}` for this feature to work.
+Alternatively, if you would like to set your own naming convention you can pass in your Factory Models like this:
+
+```js
+{
+  User: {
+    data: {
+      name: "Miles",
+      email: "example@email.com",
+      role: 1
+    }
+    mutations: "pushUser"
+  },
+}
+```
+
+When this object is passed to the factory's `define()` method, it will know to use the value of `mutation` when committing to the store.
 
 ```js
 let user = this.factory('User').create() // user is committed to store
