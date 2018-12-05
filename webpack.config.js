@@ -4,10 +4,18 @@ const webpack = require('webpack');
 const path = require('path');
 const env = require('yargs').argv.env; // use --env with webpack 2
 const pkg = require('./package.json');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 let libraryName = pkg.name;
 
 let outputFile, buildMode;
+
+const patterns = [
+  {
+    from: './src/index.d.ts',
+    to: './index.d.ts'
+  }
+]
 
 if (env === 'build') {
   buildMode = 'production'
@@ -43,6 +51,7 @@ const config = {
     extensions: ['.json', '.js']
   },
   plugins: [
+    new CopyWebpackPlugin([ ...patterns ])
   ]
 };
 

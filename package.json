@@ -3,6 +3,7 @@
   "version": "0.0.14",
   "description": "Laravel inspired model factories for Vue (or any front-end application)",
   "main": "lib/vue-model-factories.js",
+  "typings": "lib/index.d.ts",
   "jsnext:main": "src/index.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build && npm run test",
@@ -37,6 +38,7 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
+    "copy-webpack-plugin": "^4.6.0",
     "eslint": "^4.19.1",
     "eslint-loader": "^1.9.0",
     "jest": "^23.0.0",
