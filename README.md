@@ -3,6 +3,7 @@
 A Laravel inspired model factory for VueJS
 
 ![](https://travis-ci.com/DanJFletcher/vue-model-factories.svg?branch=master)
+![https://opensource.org/licenses/MIT](https://img.shields.io/npm/l/make-coverage-badge.svg)
 
 ## Install
 ```shell
