@@ -44,7 +44,11 @@ test('Can override default model through make argument', () => {
 })
 
 test('Can override default model through creaet argument', () => {
-  const user = new Factory().define(FactoryModels).build()('User').create({
+  const store = {
+    commit () {}
+  }
+
+  const user = new Factory(store).define(FactoryModels).build()('User').create({
     name: 'Jim Bean'
   })
 
