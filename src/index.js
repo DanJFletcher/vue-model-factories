@@ -64,7 +64,7 @@ export default  (store = {}) => {
                         let models = []
 
                         for (let i = 0; i < count; i++) {
-                            let model = this.make()
+                            let model = this.make(properties)
                             models.push(model)
                             save(model)
                         }
