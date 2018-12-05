@@ -13,7 +13,7 @@ export default  (store = {}) => {
             return this
         },
         build () {
-            return (model = '', count = 1) => {
+            return (model, count = 1) => {
                 let _model = getModel(FactoryModels[model])
                 let _mutation = FactoryModels[model].mutation
                     ? FactoryModels[model].mutation

@@ -43,6 +43,14 @@ test('Can override default model through make argument', () => {
   expect(user.name).toBe('Jim Bean')
 })
 
+test('Can override default model through creaet argument', () => {
+  const user = new Factory().define(FactoryModels).build()('User').create({
+    name: 'Jim Bean'
+  })
+
+  expect(user.name).toBe('Jim Bean')
+})
+
 test('Can create factory with store', () => {
   const store = {}
   const factory = new Factory(store)
