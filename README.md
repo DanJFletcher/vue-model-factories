@@ -2,6 +2,8 @@
 
 A Laravel inspired model factory for VueJS
 
+![](https://travis-ci.com/DanJFletcher/vue-model-factories.svg?branch=master)
+
 ## Install
 ```shell
 npm i -S vue-model-factories
