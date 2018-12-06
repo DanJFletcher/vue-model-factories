@@ -49,7 +49,9 @@ let user = this.factory('User').make() // {name: "Miles", email: "example@email.
 ```
 
 You can also use `create()` which will commit the object to the store.
-By default, you will need to have a mutation set up with the naming convention of `add${model}` for this feature to work.
+By default, you will need to have a mutation set up with the naming convention of `add${model}` (i.e. `addUser`) for this 
+feature to work. 
+
 Alternatively, if you would like to set your own naming convention you can pass in your Factory Models like this:
 
 ```js
@@ -98,7 +100,8 @@ Output:
 
 ### Passing overrides
 
-Of course you likely don't want to create multiples of the same model. You can either use a library like `faker` directly in your `FactoryModel` or optionally, you can always override the defaults. Or a combination of both.
+Of course you likely don't want to create multiples of the same model. You can either use a library like `faker` directly in your `FactoryModel` or optionally, you can always override the defaults (which can be handy for unit testing). Or a 
+combination of both.
 
 There are two options for overriding, either through an object, or you can pass a callback.
 
@@ -161,3 +164,36 @@ factory('Person', 50).create(person => {
 ```
 
 Admittedly that is not the prettiest code to read. But of course you can abstract all the complexity however you wish.
+
+### A Note on Auto Incrementing
+
+Currently there's no support for auto incrementing fields such as id's. However you can get around this with several ways.
+One example is to naively produce random numbers for the id of your factory model objects like this:
+
+```js
+const FactoryModels = {
+  User: {
+    id: parseInt(Math.random()*1000000000),
+    name: "default name"
+  },
+  Post: {
+    id: parseInt(Math.random()*1000000000),
+    title: "default title",
+    content: "Shrek is love..."
+  }
+}
+```
+
+We're making a random number that's 9 digits long in the above example which for the purposes of mocking data,
+is probably going to be fine. If you really feel like you're going to have duplicate id's with this approach
+you could also use a library such as [uuid](https://www.npmjs.com/package/uuid).
+
+## Using with TypeScript
+
+Although this library is not written in TypeScript, a `.d.ts` file is included for TypeScript projects. The only difference
+when creating a new instance of the factory function is you no longer call `new` on the `VueModelFactory` import. For example:
+```ts
+import VueModelFactory from 'vue-model-factories'
+
+const factory = VueModelFactory(store).define(FactoryModels).build()
+```
