@@ -1,6 +1,6 @@
 {
   "name": "vue-model-factories",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Laravel inspired model factories for Vue (or any front-end application)",
   "main": "lib/vue-model-factories.js",
   "typings": "lib/index.d.ts",
@@ -9,7 +9,8 @@
     "build": "webpack --env dev && webpack --env build && npm run test",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "jest --colors --notify --config=jest.config.js",
-    "test:watch": "test --watch"
+    "test:watch": "test --watch",
+    "test:coverage": "yarn test --coverage"
   },
   "repository": {
     "type": "git",
@@ -41,7 +42,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "eslint": "^4.19.1",
     "eslint-loader": "^1.9.0",
-    "jest": "^23.0.0",
+    "jest": "^23.6.0",
     "mocha": "^4.0.1",
     "regenerator-runtime": "^0.11.1",
     "webpack": "^4.8.3",
