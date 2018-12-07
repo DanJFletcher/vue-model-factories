@@ -2,7 +2,8 @@ const returnModels = models => (models.length > 1 ? models : models[0]);
 
 const getModel = object => (object.data ? object.data : object);
 
-const saveFactory = store => (object, mutation) => store.commit(mutation, object);
+const saveFactory = store => (object, mutation) =>
+  store.commit(mutation, object);
 
 let FactoryModels = {};
 
@@ -18,7 +19,9 @@ export default (store = {}) => {
     build() {
       return (model, count = 1) => {
         const _model = getModel(FactoryModels[model]);
-        const mutation = FactoryModels[model].mutation ? FactoryModels[model].mutation : `add${model}`;
+        const mutation = FactoryModels[model].mutation
+          ? FactoryModels[model].mutation
+          : `add${model}`;
 
         function buildModelWithCallback(callback, commit = false) {
           const models = [];

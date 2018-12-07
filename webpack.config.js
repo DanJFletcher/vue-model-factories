@@ -49,9 +49,7 @@ const config = {
     modules: [path.resolve('./node_modules'), path.resolve('./src')],
     extensions: ['.json', '.js']
   },
-  plugins: [
-    new CopyWebpackPlugin([ ...patterns ])
-  ]
+  plugins: [new CopyWebpackPlugin([...patterns])]
 };
 
 module.exports = config;
