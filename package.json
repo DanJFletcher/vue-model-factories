@@ -6,6 +6,7 @@
   "typings": "lib/index.d.ts",
   "jsnext:main": "src/index.js",
   "scripts": {
+    "prepublish": "yarn build",
     "build": "webpack --env dev && webpack --env build && npm run test",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "jest --colors --notify --config=jest.config.js",
