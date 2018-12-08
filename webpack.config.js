@@ -1,27 +1,27 @@
 /* global __dirname, require, module*/
 
-const path = require('path');
-const env = require('yargs').argv.env; // use --env with webpack 2
-const pkg = require('./package.json');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path')
+const env = require('yargs').argv.env // use --env with webpack 2
+const pkg = require('./package.json')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const libraryName = pkg.name;
+const libraryName = pkg.name
 
-let outputFile, buildMode;
+let outputFile, buildMode
 
 const patterns = [
   {
     from: './src/index.d.ts',
-    to: './index.d.ts'
-  }
-];
+    to: './index.d.ts',
+  },
+]
 
 if (env === 'build') {
-  buildMode = 'production';
-  outputFile = libraryName + '.min.js';
+  buildMode = 'production'
+  outputFile = libraryName + '.min.js'
 } else {
-  buildMode = 'development';
-  outputFile = libraryName + '.js';
+  buildMode = 'development'
+  outputFile = libraryName + '.js'
 }
 
 const config = {
@@ -34,22 +34,22 @@ const config = {
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   module: {
     rules: [
       {
         test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/
-      }
-    ]
+        exclude: /(node_modules|bower_components)/,
+      },
+    ],
   },
   resolve: {
     modules: [path.resolve('./node_modules'), path.resolve('./src')],
-    extensions: ['.json', '.js']
+    extensions: ['.json', '.js'],
   },
-  plugins: [new CopyWebpackPlugin([...patterns])]
-};
+  plugins: [new CopyWebpackPlugin([...patterns])],
+}
 
-module.exports = config;
+module.exports = config

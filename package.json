@@ -6,6 +6,7 @@
   "typings": "lib/index.d.ts",
   "jsnext:main": "src/index.js",
   "scripts": {
+    "eslint-check": "eslint --print-config . | eslint-config-prettier-check",
     "format": "eslint --fix src test",
     "prepublishOnly": "yarn build",
     "build": "webpack --env dev && webpack --env build && npm run test",
