@@ -87,9 +87,12 @@ test('Use create method to make model', () => {
 })
 
 test('Callback function gets called {modelCount} times with create method', () => {
+  const store = {
+    commit () {}
+  }
   const mockCallback = jest.fn()
 
-  new Factory()
+  new Factory(store)
     .build()('User', 2)
     .make(mockCallback)
 
