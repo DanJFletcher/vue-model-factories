@@ -21,11 +21,11 @@ declare module 'vue-model-factories' {
          * Creates the model or models in memory but does not save to
          * the registered store.
          */
-        make: (args?: any[]) => IModel<{}> | Array<IModel<{}>>;
+        make: (args?: any) => IModel<{}> | Array<IModel<{}>>;
         /**
          * Stores the model or models in the registered store.
          */
-        create: (args?: any[]) => IModel<{}> | Array<IModel<{}>>;
+        create: (args?: any) => IModel<{}> | Array<IModel<{}>>;
     }
 }
 
