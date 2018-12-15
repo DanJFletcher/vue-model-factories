@@ -1,6 +1,6 @@
 {
   "name": "vue-model-factories",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Laravel inspired model factories for Vue (or any front-end application)",
   "main": "lib/vue-model-factories.js",
   "typings": "lib/index.d.ts",
