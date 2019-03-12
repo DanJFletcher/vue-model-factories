@@ -131,7 +131,7 @@ let users = this.factory('User', 2).make(user => {
 ```
 ### Relationships
 
-Relationships can be created between models by using the `create()` method and callbacks. For example you may want a owner to pet relationship:
+Relationships can be created between models by using the `create()` method and callbacks. For example you may want an owner to pet relationship:
 
 ```js
 const user = this.factory('User').create(user => {
